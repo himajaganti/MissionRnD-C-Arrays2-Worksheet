@@ -17,6 +17,10 @@ NOTES:
 */
 
 #include <iostream>
+#include<stdio.h>
+#include<stdlib.h>
+
+#include <iostream>
 
 struct transaction {
 	int amount;
@@ -25,5 +29,58 @@ struct transaction {
 };
 
 struct transaction * sortedArraysCommonElements(struct transaction *A, int ALen, struct transaction *B, int BLen) {
-	return NULL;
+
+	int i = 0, j = 0, k = 0, l = 0, s = 0,flag=0;
+	struct transaction *temp;
+	temp = (struct transaction *)malloc(11 * sizeof(struct transaction));
+	for (i = 0; i<11; i++)
+	{
+		for (j = 0; j<12; j++)
+		{
+			temp[i].date[j] = '\0';
+			temp[i].description[j] = '\0';
+			temp[i].amount = 0;
+		}
+	}
+	if ((A == NULL) || (B == NULL))
+	{
+		return NULL;
+	}
+	for (i = 0; i<ALen; i++)
+	{
+		l = 0;
+		for (k = 0; A[i].date[k] != '\0'; k++)
+		{
+			l++;
+		}
+		for (j = 0; j<BLen; j++)
+		{
+			k = 0;
+			while (A[i].date[k] != '\0')
+			{
+				if (A[i].date[k] == B[j].date[k])
+				{
+					k++;
+				}
+				else
+				{
+					break;
+
+				}
+			}
+			if (k == l)
+			{
+				temp[s] = B[j]; s++; flag = 1; break;
+			}
+
+		}
+	}
+	
+	if (flag == 0)
+	{
+		return NULL;
+	}
+	
+	return temp;
+
 }
